@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+import sys, gi
+gi.require_version('Gdk', '3.0'); gi.require_version('Gtk', '3.0')
+from gi.repository import Gdk
+w = Gdk.get_default_root_window()
+pb = Gdk.pixbuf_get_from_window(w, 0, 0, w.get_width(), w.get_height())
+pb.savev(sys.argv[1], 'png', [], [])
+print(sys.argv[1], pb.get_width(), pb.get_height())

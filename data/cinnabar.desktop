@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Cinnabar
+Comment=macOS/Hyprland-style theme engine for Cinnamon
+Exec=@HERE@/bin/cinnabar gui
+Icon=cinnabar
+Terminal=false
+Categories=Settings;DesktopSettings;GTK;
+Keywords=theme;appearance;macos;hyprland;cinnamon;
+StartupNotify=true

@@ -1,0 +1,24 @@
+name: Graphite
+variant: dark
+colors:
+  bg: "#1c1c1e"
+  fg: "#ececec"
+  accent: "#8e8e93"
+  red: "#ff5f57"
+  yellow: "#febc2e"
+  green: "#28c840"
+  orange: "#ff9f0a"
+  blue: "#5e9eff"
+  purple: "#a78bfa"
+  teal: "#64d2ff"
+window:
+  radius: 12
+  border: 1
+  border_focused: "#5a5a60"
+  border_unfocused: "#2c2c30"
+panel:
+  top_opacity: 0.5
+  dock_opacity: 0.5
+wallpaper:
+  mode: generate
+  style: gradient

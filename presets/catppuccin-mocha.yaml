@@ -1,0 +1,25 @@
+name: Catppuccin Mocha
+variant: dark
+colors:
+  bg: "#1e1e2e"
+  fg: "#cdd6f4"
+  accent: "#cba6f7"
+  red: "#f38ba8"
+  yellow: "#f9e2af"
+  green: "#a6e3a1"
+  orange: "#fab387"
+  blue: "#89b4fa"
+  purple: "#cba6f7"
+  teal: "#94e2d5"
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: "#f5c2e7"
+  border_unfocused: "#313244"
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

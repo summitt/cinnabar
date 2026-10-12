@@ -1,0 +1,25 @@
+name: Sequoia Light
+variant: light
+colors:
+  bg: "#f2f2f5"
+  fg: "#1d1d22"
+  accent: "#007aff"
+  red: "#ff5f57"
+  yellow: "#febc2e"
+  green: "#28c840"
+  orange: "#ff9500"
+  blue: "#007aff"
+  purple: "#af52de"
+  teal: "#32ade6"
+window:
+  radius: 12
+  border: 1
+  border_focused: "#b8b8c0"
+  border_unfocused: "#d4d4da"
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.55
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

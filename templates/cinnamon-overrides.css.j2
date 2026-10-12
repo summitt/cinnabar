@@ -1,0 +1,256 @@
+
+/* ======================================================================
+   Cinnabar overrides — {{ t.name }}
+   Generated; edit the preset, not this file.
+   ====================================================================== */
+
+/* ---- panels: slim translucent menubar on top, floating dock below ---- */
+#panel {
+  font-weight: normal;
+  color: {{ c.fg }};
+}
+.panel-top, .panel-bottom, .panel-left, .panel-right {
+  color: {{ c.fg }};
+  background-color: {{ c.bg_dark | alpha(p.top_opacity) }};
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.panel-top { box-shadow: 0 1px {{ "#000000" | alpha(0.25) }}; }
+{% if p.dock %}
+.panel-bottom {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+.panel-bottom .panelLeft, .panel-bottom .panelRight {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+}
+.panel-bottom .panelCenter {
+  background-color: {{ c.bg_dark | alpha(p.dock_opacity) }};
+  border: 1px solid {{ c.fg | alpha(0.10) }};
+  border-radius: {{ p.dock_radius }}px;
+  padding: 0 8px;
+  spacing: 2px;
+}
+{% endif %}
+.applet-box {
+  padding: 0 6px;
+  border-radius: {{ r.control }}px;
+  color: {{ c.fg }};
+  text-shadow: none;
+}
+.applet-box:hover, .applet-box:checked {
+  background-color: {{ c.fg | alpha(0.12) }};
+  color: {{ c.fg }};
+}
+.applet-label { font-weight: normal; color: {{ c.fg }}; }
+.applet-icon { color: {{ c.fg }}; }
+
+/* window list items inside the dock */
+.grouped-window-list-item-box, .window-list-item-box {
+  padding: 0 6px;
+  border-radius: {{ r.control }}px;
+  border-bottom-width: 0;
+  color: {{ c.fg | alpha(0.85) }};
+  font-weight: normal;
+}
+.grouped-window-list-item-box.top, .grouped-window-list-item-box.bottom,
+.window-list-item-box.top, .window-list-item-box.bottom { border-bottom-width: 3px; border-color: rgba(0,0,0,0); }
+.grouped-window-list-item-box:hover, .grouped-window-list-item-box:focus,
+.window-list-item-box:hover, .window-list-item-box:focus {
+  background-color: {{ c.fg | alpha(0.12) }};
+  color: {{ c.fg }};
+}
+.grouped-window-list-item-box:active, .grouped-window-list-item-box:checked,
+.window-list-item-box:active, .window-list-item-box:checked {
+  background-color: {{ c.fg | alpha(0.08) }};
+  border-color: {{ c.accent }};
+  color: {{ c.fg }};
+}
+.grouped-window-list-item-box .progress { background-color: {{ c.accent | alpha(0.8) }}; }
+.grouped-window-list-item-demands-attention, .window-list-item-demands-attention {
+  background-gradient-start: {{ c.red | alpha(0.7) }};
+  background-gradient-end: {{ c.red | alpha(0.7) }};
+  border-radius: {{ r.control }}px;
+}
+.grouped-window-list-thumbnail-menu, .window-list-preview {
+  background-color: {{ c.surface | alpha(p.popup_opacity) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.popup }}px;
+  padding: 8px;
+}
+
+/* ---- popup menus (applets, context menus) ---- */
+.popup-menu-content {
+  padding: 6px;
+  border-radius: {{ r.popup }}px;
+  background-color: {{ c.surface | alpha(p.popup_opacity) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  box-shadow: 0 10px 30px {{ "#000000" | alpha(0.45) }};
+  color: {{ c.fg }};
+}
+.popup-sub-menu { background-color: rgba(0,0,0,0); box-shadow: none; }
+.popup-menu-item {
+  padding: 6px 12px;
+  spacing: 0.8em;
+  border-radius: {{ r.control }}px;
+  color: {{ c.fg }};
+}
+.popup-menu-item:active {
+  background-color: {{ c.accent }};
+  color: {{ c.accent_fg }};
+}
+.popup-menu-item:insensitive { color: {{ c.fg | alpha(0.45) }}; background: none; }
+.popup-separator-menu-item {
+  -gradient-height: 1px;
+  -gradient-start: {{ c.fg | alpha(0.10) }};
+  -gradient-end: {{ c.fg | alpha(0.10) }};
+  -margin-horizontal: 8px;
+  height: 1px;
+  margin: 4px 0;
+}
+.popup-combo-menu, .popup-combobox-item { border-radius: {{ r.control }}px; }
+.popup-subtitle-menu-item { color: {{ c.fg_dim }}; font-weight: normal; }
+
+/* ---- the application menu (Cinnamenu / menu@cinnamon.org) ---- */
+.menu {
+  color: {{ c.fg }};
+  background-color: {{ c.surface | alpha(p.popup_opacity) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.popup }}px;
+  box-shadow: 0 10px 30px {{ "#000000" | alpha(0.45) }};
+}
+.menu-top, .menu-bottom, .menu-left, .menu-right { border-radius: {{ r.popup }}px; }
+.menu-category-button, .menu-application-button, .menu-favorites-button, .menu-places-button {
+  padding: 6px 8px;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: {{ r.control }}px;
+  color: {{ c.fg }};
+}
+.menu-category-button-selected, .menu-application-button-selected,
+.menu-favorites-button:hover, .menu-places-button:hover {
+  padding: 6px 8px;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: {{ r.control }}px;
+  background-color: {{ c.accent }};
+  color: {{ c.accent_fg }};
+}
+.menu-category-button-greyed { color: {{ c.fg_dim }}; }
+.menu-selected-app-title { color: {{ c.fg }}; font-weight: bold; }
+.menu-selected-app-description { color: {{ c.fg_dim }}; }
+#menu-search-entry, #appmenu-search-entry {
+  border-radius: 99px;
+  background-color: {{ c.fg | alpha(0.08) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  padding: 5px 12px;
+  color: {{ c.fg }};
+  caret-color: {{ c.fg }};
+  selection-background-color: {{ c.accent }};
+  selected-color: {{ c.accent_fg }};
+}
+#menu-search-entry:focus, #appmenu-search-entry:focus { border: 1px solid {{ c.accent | alpha(0.7) }}; }
+.menu-search-entry-icon { color: {{ c.fg_dim }}; }
+
+/* ---- notifications, OSD, tooltips, alt-tab, dialogs ---- */
+#notification {
+  border-radius: {{ r.popup }}px;
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-top: 1px solid {{ c.fg | alpha(0.12) }};
+  background-color: {{ c.surface | alpha(0.96) }};
+  box-shadow: 0 10px 30px {{ "#000000" | alpha(0.45) }};
+  color: {{ c.fg }};
+  padding: 14px;
+}
+.notification-button, .notification-icon-button, .sound-button {
+  border-radius: {{ r.control }}px;
+  background-color: {{ c.fg | alpha(0.08) }};
+  border: 1px solid {{ c.fg | alpha(0.10) }};
+  color: {{ c.fg }};
+}
+.notification-button:hover, .notification-icon-button:hover, .sound-button:hover { background-color: {{ c.fg | alpha(0.14) }}; }
+.media-keys-osd, .workspace-switch-osd, .info-osd {
+  border-radius: 20px;
+  background-color: {{ c.surface | alpha(0.88) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  color: {{ c.fg }};
+  font-weight: normal;
+}
+#Tooltip {
+  background-color: {{ c.surface | alpha(0.97) }};
+  color: {{ c.fg }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.control }}px;
+  padding: 6px 10px;
+  font-weight: normal;
+}
+.switcher-list {
+  color: {{ c.fg }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  background-color: {{ c.surface | alpha(0.93) }};
+  border-radius: {{ r.popup }}px;
+  padding: 16px;
+}
+.switcher-list .item-box { border-radius: {{ r.control }}px; padding: 8px; }
+.switcher-list .item-box:selected { background-color: {{ c.fg | alpha(0.14) }}; color: {{ c.fg }}; }
+.switcher-list .item-box:outlined { background-color: {{ c.fg | alpha(0.06) }}; }
+.dialog, .modal-dialog, .run-dialog, .end-session-dialog, .prompt-dialog {
+  background-color: {{ c.surface | alpha(0.97) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.popup }}px;
+  color: {{ c.fg }};
+}
+.dialog .dialog-button {
+  border-radius: {{ r.control }}px;
+  background-color: {{ c.fg | alpha(0.08) }};
+  border: 1px solid {{ c.fg | alpha(0.10) }};
+  color: {{ c.fg }};
+}
+.dialog .dialog-button:hover { background-color: {{ c.fg | alpha(0.14) }}; }
+.dialog .dialog-button:default, .dialog .dialog-button:focus { background-color: {{ c.accent }}; color: {{ c.accent_fg }}; border-color: {{ c.accent }}; }
+.dialog .dialog-button:destructive-action { background-color: {{ c.red }}; color: #ffffff; border-color: {{ c.red }}; }
+.run-dialog-entry, .prompt-dialog-password-entry {
+  border-radius: {{ r.control }}px;
+  background-color: {{ c.fg | alpha(0.08) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  color: {{ c.fg }};
+  caret-color: {{ c.fg }};
+  selection-background-color: {{ c.accent }};
+  selected-color: {{ c.accent_fg }};
+}
+.run-dialog-entry:focus, .prompt-dialog-password-entry:focus { border-color: {{ c.accent | alpha(0.7) }}; }
+
+/* ---- calendar, sliders, switches, scrollbars ---- */
+.calendar-today { background-color: {{ c.accent }}; color: {{ c.accent_fg }}; border-radius: 99px; font-weight: bold; }
+.calendar-day-base { border-radius: 99px; }
+.calendar-day-base:hover { background-color: {{ c.fg | alpha(0.12) }}; color: {{ c.fg }}; border-radius: 99px; }
+.calendar-today:hover { background-color: {{ c.accent_hover }}; color: {{ c.accent_fg }}; }
+.calendar-week-number, .calendar-day-heading, .calendar-other-month-day { color: {{ c.fg_dim }}; }
+.calendar-events-event-container, .calendar-event-button { border-radius: {{ r.control }}px; }
+.toggle-switch { border-radius: 99px; }
+.slider { -slider-background-color: {{ c.fg | alpha(0.15) }}; -slider-border-color: rgba(0,0,0,0); -slider-handle-border-color: rgba(0,0,0,0); -slider-active-background-color: {{ c.accent }}; -slider-active-border-color: {{ c.accent }}; }
+StScrollBar StBin#trough { background-color: rgba(0,0,0,0); border-radius: 99px; }
+StScrollBar StButton#vhandle, StScrollBar StButton#hhandle { background-color: {{ c.fg | alpha(0.28) }}; border-radius: 99px; }
+StScrollBar StButton#vhandle:hover, StScrollBar StButton#hhandle:hover { background-color: {{ c.fg | alpha(0.45) }}; }
+
+/* ---- workspaces, expo, tiling previews ---- */
+.workspace-button, .workspace-graph { border-radius: {{ r.control }}px; }
+.workspace-button:outlined, .workspace-graph:outlined { background-color: {{ c.accent | alpha(0.35) }}; }
+.expo-workspace-thumbnail-frame { border-radius: {{ w.radius }}px; border: 3px solid rgba(255,255,255,0); }
+.expo-workspace-thumbnail-frame#active { border: 3px solid {{ c.accent }}; border-radius: {{ w.radius }}px; }
+.expo-background, .workspace-overview-background-shade { background-color: {{ "#000000" | alpha(0.5) }}; }
+.tile-preview, .tile-hud {
+  background-color: {{ c.accent | alpha(0.22) }};
+  border: {{ w.border }}px solid {{ c.accent }};
+  border-radius: {{ w.radius }}px;
+}
+.tile-preview.snap, .tile-hud.snap { background-color: {{ c.accent | alpha(0.4) }}; }
+.window-caption {
+  background-color: {{ c.surface | alpha(0.92) }};
+  border: 1px solid {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.control }}px;
+  color: {{ c.fg }};
+  padding: 4px 10px;
+}
+.window-border { border: {{ w.border }}px solid {{ c.accent }}; border-radius: {{ w.radius }}px; }
+.window-close { background-image: url("common-assets/misc/close.svg"); }

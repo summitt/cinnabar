@@ -1,0 +1,150 @@
+
+/* ======================================================================
+   Cinnabar overrides — {{ t.name }}  (GTK 3)
+   ====================================================================== */
+decoration {
+  border-radius: {{ w.radius }}px;
+  border-width: 0;
+  box-shadow: 0 8px 24px 2px {{ "#000000" | alpha(0.45) }}, 0 0 0 {{ w.border }}px {{ c.wm_border_focused }};
+  margin: 12px;
+}
+decoration:backdrop {
+  box-shadow: 0 4px 14px 1px {{ "#000000" | alpha(0.28) }}, 0 0 0 {{ w.border }}px {{ c.wm_border_unfocused }};
+}
+.maximized decoration, .fullscreen decoration { border-radius: 0; box-shadow: none; }
+.tiled decoration, .tiled-top decoration, .tiled-right decoration, .tiled-bottom decoration, .tiled-left decoration {
+  border-radius: 0;
+  box-shadow: 0 0 0 {{ w.border }}px {{ c.wm_border_focused }}, 0 0 0 20px transparent;
+}
+.tiled decoration:backdrop, .tiled-top decoration:backdrop, .tiled-right decoration:backdrop, .tiled-bottom decoration:backdrop, .tiled-left decoration:backdrop {
+  box-shadow: 0 0 0 {{ w.border }}px {{ c.wm_border_unfocused }}, 0 0 0 20px transparent;
+}
+.popup decoration, .csd.popup decoration, .tooltip.csd decoration, .csd.message-dialog decoration {
+  box-shadow: 0 6px 18px {{ "#000000" | alpha(0.4) }}, 0 0 0 1px {{ c.fg | alpha(0.12) }};
+  border-radius: {{ r.popup }}px;
+}
+.solid-csd decoration { border-radius: 0; box-shadow: none; }
+
+headerbar, .titlebar:not(headerbar) {
+  min-height: {{ w.titlebar_height }}px;
+  padding: 0 8px;
+  background: {{ c.wm_bg }};
+  color: {{ c.wm_title }};
+  box-shadow: inset 0 -1px {{ "#000000" | alpha(0.25) }};
+  border: none;
+}
+headerbar:backdrop, .titlebar:not(headerbar):backdrop { background: {{ c.wm_bg_unfocused }}; color: {{ c.wm_title_unfocused }}; }
+.csd headerbar, .csd .titlebar:not(headerbar), .csd headerbar.titlebar, window.csd > .titlebar:not(headerbar) {
+  border-radius: {{ w.radius }}px {{ w.radius }}px 0 0;
+}
+.maximized headerbar, .maximized .titlebar, .tiled headerbar, .fullscreen headerbar { border-radius: 0; }
+headerbar .title { font-weight: 600; }
+headerbar .subtitle { color: {{ c.fg_dim }}; }
+
+/* ---- server-side decorations: Muffin (Cinnamon >= 5.4) renders window frames with this CSS ---- */
+.ssd decoration, window.ssd decoration {
+  border-radius: {{ w.radius }}px{% if not w.round_bottom %} {{ w.radius }}px 0 0{% endif %};
+  border: {{ w.border }}px solid {{ c.wm_border_focused }};
+{% if t.window.border_focused == "gradient" %}
+  border-image: linear-gradient(135deg, {{ c.wm_border_focused }}, {{ c.wm_border_gradient_to }}) 1;
+{% endif %}
+  box-shadow: none;
+  margin: 10px;
+}
+.ssd decoration:backdrop, window.ssd decoration:backdrop {
+  border-color: {{ c.wm_border_unfocused }};
+  border-image: none;
+  box-shadow: none;
+}
+.ssd.maximized decoration, .ssd.fullscreen decoration, .ssd.maximized decoration:backdrop, .ssd.fullscreen decoration:backdrop {
+  border-radius: 0;
+  border-width: 0;
+  border-image: none;
+}
+.ssd.tiled decoration, .ssd.tiled decoration:backdrop { border-radius: 0; }
+
+headerbar.default-decoration, .titlebar.default-decoration, .default-decoration.titlebar:not(headerbar) {
+  min-height: {{ w.titlebar_height - 6 }}px;
+  padding: 3px 8px;
+  background: {{ c.wm_bg }};
+  color: {{ c.wm_title }};
+  border: none;
+  border-radius: {{ w.radius - w.border }}px {{ w.radius - w.border }}px 0 0;
+  box-shadow: none;
+}
+headerbar.default-decoration:backdrop, .titlebar.default-decoration:backdrop, .default-decoration.titlebar:not(headerbar):backdrop {
+  background: {{ c.wm_bg_unfocused }};
+  color: {{ c.wm_title_unfocused }};
+}
+.maximized headerbar.default-decoration, .maximized .default-decoration.titlebar:not(headerbar),
+.tiled headerbar.default-decoration, .tiled .default-decoration.titlebar:not(headerbar) {
+  border-radius: 0;
+  background: {{ c.wm_bg }};
+}
+.maximized headerbar.default-decoration:backdrop, .maximized .default-decoration.titlebar:not(headerbar):backdrop { background: {{ c.wm_bg_unfocused }}; }
+headerbar.default-decoration .title, .titlebar.default-decoration .title { font-weight: 600; }
+
+/* ---- traffic lights (both Muffin frames and GTK client-side headerbars) ---- */
+headerbar button.titlebutton, .titlebar button.titlebutton,
+headerbar.default-decoration button.titlebutton, .titlebar.default-decoration button.titlebutton {
+  min-width: {{ w.button_size }}px;
+  min-height: {{ w.button_size }}px;
+  padding: 0;
+  margin: 0 4px;
+  border-radius: 100%;
+  border: none;
+  box-shadow: inset 0 0 0 1px {{ "#000000" | alpha(0.18) }};
+  background-image: none;
+  background-color: {{ c.wm_button_unfocused }};
+  color: transparent;
+  -gtk-icon-shadow: none;
+  transition: none;
+}
+headerbar button.titlebutton image, .titlebar button.titlebutton image,
+headerbar.default-decoration button.titlebutton image, .titlebar.default-decoration button.titlebutton image {
+  color: transparent;
+  -gtk-icon-transform: scale(0.5);
+  -gtk-icon-shadow: none;
+}
+headerbar button.titlebutton:hover image, .titlebar button.titlebutton:hover image,
+headerbar.default-decoration button.titlebutton:hover image, .titlebar.default-decoration button.titlebutton:hover image,
+headerbar button.titlebutton:hover:backdrop image, .titlebar button.titlebutton:hover:backdrop image {
+  color: {{ "#000000" | alpha(0.65) }};
+}
+{% for name, col in [("close", c.red), ("minimize", c.yellow), ("maximize", c.green)] %}
+headerbar button.titlebutton.{{ name }}, .titlebar button.titlebutton.{{ name }},
+headerbar button.titlebutton.{{ name }}:hover, .titlebar button.titlebutton.{{ name }}:hover,
+headerbar button.titlebutton.{{ name }}:hover:backdrop, .titlebar button.titlebutton.{{ name }}:hover:backdrop,
+headerbar button.titlebutton.{{ name }}:active, .titlebar button.titlebutton.{{ name }}:active,
+headerbar button.titlebutton.{{ name }}:active:backdrop, .titlebar button.titlebutton.{{ name }}:active:backdrop {
+  background-image: none;
+  background-color: {{ col }};
+  color: transparent;
+  border-width: 0;
+  box-shadow: inset 0 0 0 1px {{ "#000000" | alpha(0.18) }};
+}
+headerbar button.titlebutton.{{ name }}:active, .titlebar button.titlebutton.{{ name }}:active { background-color: {{ col | darken(0.1) }}; }
+headerbar button.titlebutton.{{ name }}:backdrop, .titlebar button.titlebutton.{{ name }}:backdrop {
+  background-image: none;
+  background-color: {{ c.wm_button_unfocused }};
+  color: transparent;
+}
+{% endfor %}
+
+/* smoother chrome */
+button { padding: 3px 10px; }
+entry { padding-left: 8px; padding-right: 8px; }
+popover, popover.background { border-radius: {{ r.popup }}px; }
+popover > .csd decoration { border-radius: {{ r.popup }}px; }
+menu, .menu, .context-menu { padding: 6px; border-radius: {{ r.popup }}px; }
+menu menuitem, .menu menuitem, .context-menu menuitem { border-radius: {{ r.control }}px; padding: 4px 10px; min-height: 22px; }
+.sidebar, placessidebar, .nemo-window .sidebar { background-color: {{ c.bg_deep }}; }
+placessidebar row.sidebar-row { border-radius: {{ r.control }}px; margin: 1px 6px; }
+placessidebar row.sidebar-row:selected { background-color: {{ c.accent | alpha(0.25) }}; color: {{ c.fg }}; }
+notebook > header > tabs > tab { border-radius: {{ r.control }}px {{ r.control }}px 0 0; }
+scrollbar slider { border-radius: 99px; min-width: 6px; min-height: 6px; }
+scrollbar.vertical slider { min-width: 6px; }
+scrollbar.horizontal slider { min-height: 6px; }
+tooltip, tooltip.background { border-radius: {{ r.control }}px; background-color: {{ c.surface | alpha(0.97) }}; color: {{ c.fg }}; border: 1px solid {{ c.fg | alpha(0.12) }}; }
+switch { border-radius: 99px; } switch slider { border-radius: 99px; }
+check { border-radius: {{ [r.control, 5] | min }}px; }

@@ -1,0 +1,25 @@
+name: Tokyo Night
+variant: dark
+colors:
+  bg: "#1a1b26"
+  fg: "#c0caf5"
+  accent: "#7aa2f7"
+  red: "#f7768e"
+  yellow: "#e0af68"
+  green: "#9ece6a"
+  orange: "#ff9e64"
+  blue: "#7aa2f7"
+  purple: "#bb9af7"
+  teal: "#7dcfff"
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: purple
+  border_unfocused: "#292e42"
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs
