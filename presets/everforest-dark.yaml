@@ -1,0 +1,25 @@
+name: Everforest Dark
+variant: dark
+colors:
+  bg: '#2d353b'
+  fg: '#d3c6aa'
+  accent: '#a7c080'
+  red: '#e67e80'
+  yellow: '#dbbc7f'
+  green: '#a7c080'
+  orange: '#e69875'
+  blue: '#7fbbb3'
+  purple: '#d699b6'
+  teal: '#83c092'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#83c092'
+  border_unfocused: '#3d484d'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

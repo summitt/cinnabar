@@ -1,0 +1,25 @@
+name: Nord
+variant: dark
+colors:
+  bg: '#2e3440'
+  fg: '#eceff4'
+  accent: '#88c0d0'
+  red: '#bf616a'
+  yellow: '#ebcb8b'
+  green: '#a3be8c'
+  orange: '#d08770'
+  blue: '#81a1c1'
+  purple: '#b48ead'
+  teal: '#8fbcbb'
+window:
+  radius: 12
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#81a1c1'
+  border_unfocused: '#3b4252'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

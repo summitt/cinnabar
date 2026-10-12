@@ -1,0 +1,25 @@
+name: Gruvbox Dark
+variant: dark
+colors:
+  bg: '#282828'
+  fg: '#ebdbb2'
+  accent: '#fe8019'
+  red: '#fb4934'
+  yellow: '#fabd2f'
+  green: '#b8bb26'
+  orange: '#fe8019'
+  blue: '#83a598'
+  purple: '#d3869b'
+  teal: '#8ec07c'
+window:
+  radius: 12
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#fabd2f'
+  border_unfocused: '#3c3836'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

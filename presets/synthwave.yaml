@@ -1,0 +1,25 @@
+name: Synthwave '84
+variant: dark
+colors:
+  bg: '#2a2139'
+  fg: '#f0eff1'
+  accent: '#ff7edb'
+  red: '#fe4450'
+  yellow: '#fede5d'
+  green: '#72f1b8'
+  orange: '#ff8b39'
+  blue: '#36f9f6'
+  purple: '#b893ce'
+  teal: '#36f9f6'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#36f9f6'
+  border_unfocused: '#3b2f55'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

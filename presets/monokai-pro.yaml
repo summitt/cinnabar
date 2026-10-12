@@ -1,0 +1,25 @@
+name: Monokai Pro
+variant: dark
+colors:
+  bg: '#2d2a2e'
+  fg: '#fcfcfa'
+  accent: '#ffd866'
+  red: '#ff6188'
+  yellow: '#ffd866'
+  green: '#a9dc76'
+  orange: '#fc9867'
+  blue: '#78dce8'
+  purple: '#ab9df2'
+  teal: '#78dce8'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#ff6188'
+  border_unfocused: '#403e41'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

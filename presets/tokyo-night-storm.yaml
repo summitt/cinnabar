@@ -1,0 +1,25 @@
+name: Tokyo Night Storm
+variant: dark
+colors:
+  bg: '#24283b'
+  fg: '#c0caf5'
+  accent: '#7aa2f7'
+  red: '#f7768e'
+  yellow: '#e0af68'
+  green: '#9ece6a'
+  orange: '#ff9e64'
+  blue: '#7aa2f7'
+  purple: '#bb9af7'
+  teal: '#7dcfff'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: purple
+  border_unfocused: '#3b4261'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

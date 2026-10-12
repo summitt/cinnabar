@@ -433,11 +433,14 @@ class CinnabarWindow(Adw.ApplicationWindow):
             self.preset_list.remove(row)
         self._preset_paths = []
         select = None
+        loaded = []
         for slug, path in T.list_presets().items():
             try:
-                t = T.load(path)
+                loaded.append((T.load(path), path))
             except Exception:
                 continue
+        loaded.sort(key=lambda tp: (tp[0]["variant"] != "dark", tp[0]["name"].lower()))
+        for t, path in loaded:
             row = Adw.ActionRow(title=t["name"], subtitle=("light" if t["variant"] == "light" else "dark") + (" · user" if path.parent == USER_PRESETS else ""))
             sw = Gtk.DrawingArea(content_width=22, content_height=22, valign=Gtk.Align.CENTER)
             sw.set_draw_func(self._draw_swatch, (t.palette["bg"], t.palette["accent"]))

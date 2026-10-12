@@ -1,0 +1,25 @@
+name: Night Owl
+variant: dark
+colors:
+  bg: '#011627'
+  fg: '#d6deeb'
+  accent: '#82aaff'
+  red: '#ef5350'
+  yellow: '#ecc48d'
+  green: '#addb67'
+  orange: '#f78c6c'
+  blue: '#82aaff'
+  purple: '#c792ea'
+  teal: '#7fdbca'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#c792ea'
+  border_unfocused: '#1d3b53'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

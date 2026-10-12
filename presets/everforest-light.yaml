@@ -1,0 +1,25 @@
+name: Everforest Light
+variant: light
+colors:
+  bg: '#fdf6e3'
+  fg: '#5c6a72'
+  accent: '#8da101'
+  red: '#f85552'
+  yellow: '#dfa000'
+  green: '#8da101'
+  orange: '#f57d26'
+  blue: '#3a94c5'
+  purple: '#df69ba'
+  teal: '#35a77c'
+window:
+  radius: 10
+  border: 2
+  border_focused: accent
+  border_unfocused: '#e6e2cc'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

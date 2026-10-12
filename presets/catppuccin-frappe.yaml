@@ -1,0 +1,25 @@
+name: Catppuccin Frappé
+variant: dark
+colors:
+  bg: '#303446'
+  fg: '#c6d0f5'
+  accent: '#ca9ee6'
+  red: '#e78284'
+  yellow: '#e5c890'
+  green: '#a6d189'
+  orange: '#ef9f76'
+  blue: '#8caaee'
+  purple: '#ca9ee6'
+  teal: '#81c8be'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#f4b8e4'
+  border_unfocused: '#414559'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

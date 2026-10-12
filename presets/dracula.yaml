@@ -1,0 +1,25 @@
+name: Dracula
+variant: dark
+colors:
+  bg: '#282a36'
+  fg: '#f8f8f2'
+  accent: '#bd93f9'
+  red: '#ff5555'
+  yellow: '#f1fa8c'
+  green: '#50fa7b'
+  orange: '#ffb86c'
+  blue: '#8be9fd'
+  purple: '#bd93f9'
+  teal: '#8be9fd'
+window:
+  radius: 12
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#ff79c6'
+  border_unfocused: '#44475a'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

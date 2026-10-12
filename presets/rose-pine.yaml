@@ -1,0 +1,25 @@
+name: Rosé Pine
+variant: dark
+colors:
+  bg: '#191724'
+  fg: '#e0def4'
+  accent: '#c4a7e7'
+  red: '#eb6f92'
+  yellow: '#f6c177'
+  green: '#9ccfd8'
+  orange: '#ebbcba'
+  blue: '#31748f'
+  purple: '#c4a7e7'
+  teal: '#9ccfd8'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#ebbcba'
+  border_unfocused: '#26233a'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

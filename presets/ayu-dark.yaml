@@ -1,0 +1,25 @@
+name: Ayu Dark
+variant: dark
+colors:
+  bg: '#0b0e14'
+  fg: '#bfbdb6'
+  accent: '#e6b450'
+  red: '#f07178'
+  yellow: '#e6b450'
+  green: '#aad94c'
+  orange: '#ff8f40'
+  blue: '#59c2ff'
+  purple: '#d2a6ff'
+  teal: '#95e6cb'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#ff8f40'
+  border_unfocused: '#1b2029'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

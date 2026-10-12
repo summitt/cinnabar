@@ -1,0 +1,25 @@
+name: Gruvbox Light
+variant: light
+colors:
+  bg: '#fbf1c7'
+  fg: '#3c3836'
+  accent: '#d65d0e'
+  red: '#cc241d'
+  yellow: '#d79921'
+  green: '#98971a'
+  orange: '#d65d0e'
+  blue: '#458588'
+  purple: '#b16286'
+  teal: '#689d6a'
+window:
+  radius: 10
+  border: 2
+  border_focused: accent
+  border_unfocused: '#d5c4a1'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

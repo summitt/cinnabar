@@ -1,0 +1,24 @@
+name: One Dark
+variant: dark
+colors:
+  bg: '#282c34'
+  fg: '#abb2bf'
+  accent: '#61afef'
+  red: '#e06c75'
+  yellow: '#e5c07b'
+  green: '#98c379'
+  orange: '#d19a66'
+  blue: '#61afef'
+  purple: '#c678dd'
+  teal: '#56b6c2'
+window:
+  radius: 10
+  border: 2
+  border_focused: accent
+  border_unfocused: '#3e4451'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

@@ -1,0 +1,25 @@
+name: Flexoki Light
+variant: light
+colors:
+  bg: '#fffcf0'
+  fg: '#100f0f'
+  accent: '#bc5215'
+  red: '#af3029'
+  yellow: '#ad8301'
+  green: '#66800b'
+  orange: '#bc5215'
+  blue: '#205ea6'
+  purple: '#5e409d'
+  teal: '#24837b'
+window:
+  radius: 8
+  border: 2
+  border_focused: accent
+  border_unfocused: '#e6e4d9'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

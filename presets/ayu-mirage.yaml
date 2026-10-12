@@ -1,0 +1,25 @@
+name: Ayu Mirage
+variant: dark
+colors:
+  bg: '#1f2430'
+  fg: '#cccac2'
+  accent: '#ffcc66'
+  red: '#f28779'
+  yellow: '#ffd173'
+  green: '#d5ff80'
+  orange: '#ffad66'
+  blue: '#73d0ff'
+  purple: '#dfbfff'
+  teal: '#95e6cb'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#ffad66'
+  border_unfocused: '#2a3040'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

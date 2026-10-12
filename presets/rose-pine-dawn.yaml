@@ -1,0 +1,26 @@
+name: Rosé Pine Dawn
+variant: light
+colors:
+  bg: '#faf4ed'
+  fg: '#575279'
+  accent: '#907aa9'
+  red: '#b4637a'
+  yellow: '#ea9d34'
+  green: '#56949f'
+  orange: '#d7827e'
+  blue: '#286983'
+  purple: '#907aa9'
+  teal: '#56949f'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#d7827e'
+  border_unfocused: '#dfdad9'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

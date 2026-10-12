@@ -1,0 +1,25 @@
+name: Tokyo Night Day
+variant: light
+colors:
+  bg: '#e1e2e7'
+  fg: '#3760bf'
+  accent: '#2e7de9'
+  red: '#f52a65'
+  yellow: '#8c6c3e'
+  green: '#587539'
+  orange: '#b15c00'
+  blue: '#2e7de9'
+  purple: '#9854f1'
+  teal: '#007197'
+window:
+  radius: 10
+  border: 2
+  border_focused: accent
+  border_unfocused: '#c4c8da'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs

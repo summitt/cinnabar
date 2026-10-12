@@ -1,0 +1,25 @@
+name: Oxocarbon
+variant: dark
+colors:
+  bg: '#161616'
+  fg: '#f2f4f8'
+  accent: '#78a9ff'
+  red: '#ee5396'
+  yellow: '#ffe97b'
+  green: '#42be65'
+  orange: '#ff7eb6'
+  blue: '#78a9ff'
+  purple: '#be95ff'
+  teal: '#3ddbd9'
+window:
+  radius: 8
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#be95ff'
+  border_unfocused: '#262626'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

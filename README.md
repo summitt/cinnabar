@@ -27,7 +27,10 @@ cinnabar gui                     # the app: presets, color pickers, live preview
 cinnabar restore                 # put the desktop back exactly as it was before the first apply
 ```
 
-Presets: `sequoia-dark`, `sequoia-light`, `catppuccin-mocha`, `tokyo-night`, `graphite`.
+Presets (dark): `ayu-dark`, `ayu-mirage`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha`, `dracula`, `everforest-dark`, `flexoki-dark`, `github-dark`, `graphite`, `gruvbox-dark`, `kanagawa`, `monokai-pro`, `night-owl`, `nord`, `one-dark`, `oxocarbon`, `palenight`, `rose-pine-moon`, `rose-pine`, `sequoia-dark`, `sequoia-green`, `sequoia-midnight`, `sequoia-orange`, `sequoia-pink`, `sequoia-purple`, `sequoia-teal`, `solarized-dark`, `synthwave`, `tokyo-night-storm`, `tokyo-night`, `vesper`.
+
+Presets (light): `catppuccin-latte`, `everforest-light`, `flexoki-light`, `github-light`, `gruvbox-light`, `rose-pine-dawn`, `sequoia-light-purple`, `sequoia-light`, `solarized-light`, `tokyo-night-day`.
+
 Your own go in `~/.config/cinnabar/presets/*.yaml` (the app's *Save as preset…* writes there).
 Any key you omit falls back to `cinnabar/tokens.py:DEFAULTS`.
 

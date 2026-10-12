@@ -1,0 +1,24 @@
+name: Flexoki Dark
+variant: dark
+colors:
+  bg: '#100f0f'
+  fg: '#cecdc3'
+  accent: '#da702c'
+  red: '#d14d41'
+  yellow: '#d0a215'
+  green: '#879a39'
+  orange: '#da702c'
+  blue: '#4385be'
+  purple: '#8b7ec8'
+  teal: '#3aa99f'
+window:
+  radius: 8
+  border: 2
+  border_focused: accent
+  border_unfocused: '#282726'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

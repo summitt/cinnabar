@@ -1,0 +1,25 @@
+name: Catppuccin Macchiato
+variant: dark
+colors:
+  bg: '#24273a'
+  fg: '#cad3f5'
+  accent: '#c6a0f6'
+  red: '#ed8796'
+  yellow: '#eed49f'
+  green: '#a6da95'
+  orange: '#f5a97f'
+  blue: '#8aadf4'
+  purple: '#c6a0f6'
+  teal: '#8bd5ca'
+window:
+  radius: 10
+  border: 2
+  border_focused: gradient
+  border_gradient_to: '#f5bde6'
+  border_unfocused: '#363a4f'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

@@ -1,0 +1,24 @@
+name: Sequoia Purple
+variant: dark
+colors:
+  bg: '#1e1e24'
+  fg: '#e8e8ee'
+  accent: '#bf5af2'
+  red: '#ff5f57'
+  yellow: '#febc2e'
+  green: '#28c840'
+  orange: '#ff9f0a'
+  blue: '#0a84ff'
+  purple: '#bf5af2'
+  teal: '#5ac8fa'
+window:
+  radius: 12
+  border: 2
+  border_focused: accent
+  border_unfocused: '#3a3a44'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

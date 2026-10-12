@@ -1,0 +1,24 @@
+name: Solarized Dark
+variant: dark
+colors:
+  bg: '#002b36'
+  fg: '#93a1a1'
+  accent: '#268bd2'
+  red: '#dc322f'
+  yellow: '#b58900'
+  green: '#859900'
+  orange: '#cb4b16'
+  blue: '#268bd2'
+  purple: '#6c71c4'
+  teal: '#2aa198'
+window:
+  radius: 10
+  border: 2
+  border_focused: accent
+  border_unfocused: '#073642'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+wallpaper:
+  mode: generate
+  style: blobs

@@ -1,0 +1,25 @@
+name: GitHub Light
+variant: light
+colors:
+  bg: '#ffffff'
+  fg: '#24292f'
+  accent: '#0969da'
+  red: '#cf222e'
+  yellow: '#9a6700'
+  green: '#1a7f37'
+  orange: '#bc4c00'
+  blue: '#0969da'
+  purple: '#8250df'
+  teal: '#1b7c83'
+window:
+  radius: 8
+  border: 2
+  border_focused: accent
+  border_unfocused: '#d0d7de'
+panel:
+  top_opacity: 0.6
+  dock_opacity: 0.6
+icons: Papirus-Light
+wallpaper:
+  mode: generate
+  style: blobs
