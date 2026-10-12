@@ -46,9 +46,10 @@ The installer
 1. installs missing system packages with apt,
 2. downloads the Blur Cinnamon extension from Cinnamon Spices if it is not installed,
 3. links `cinnabar` into `~/.local/bin` and adds **Cinnabar** and **Cinnabar Tray** to the application menu,
-4. enables the tray icon (autostarts at login).
+4. installs a root-owned copy of the login-screen helper to `/usr/local/lib/cinnabar` with a polkit policy,
+5. enables the tray icon (autostarts at login).
 
-Flags: `--no-apt`, `--no-blur`, `--no-tray`. Nothing is written outside your home except through apt.
+Flags: `--no-apt`, `--no-blur`, `--no-tray`, `--no-helper`. Outside your home it only touches apt, the helper and its polkit policy.
 
 ### Uninstall / undo
 

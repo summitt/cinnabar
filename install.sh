@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Cinnabar installer: dependencies (apt), fonts, Blur Cinnamon, CLI, app entries, tray autostart.
-# Usage: ./install.sh [--no-apt] [--no-tray] [--no-blur]
+# Usage: ./install.sh [--no-apt] [--no-tray] [--no-blur] [--no-helper]
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NO_APT=0; NO_TRAY=0; NO_BLUR=0
-for a in "$@"; do case "$a" in --no-apt) NO_APT=1;; --no-tray) NO_TRAY=1;; --no-blur) NO_BLUR=1;; esac; done
+NO_APT=0; NO_TRAY=0; NO_BLUR=0; NO_HELPER=0
+for a in "$@"; do case "$a" in --no-apt) NO_APT=1;; --no-tray) NO_TRAY=1;; --no-blur) NO_BLUR=1;; --no-helper) NO_HELPER=1;; esac; done
 say() { printf '\033[1;35m[cinnabar]\033[0m %s\n' "$*"; }
 
 # ---- 1. system packages ------------------------------------------------------
@@ -37,6 +37,17 @@ if [ "$NO_BLUR" = 0 ] && [ ! -d "$BLUR" ]; then
     say "could not download Blur Cinnamon; install it later from Extensions > Download (optional)"
   fi
   rm -rf "$TMP"
+fi
+
+# ---- 2b. login-screen helper (root-owned copy + polkit policy) ----------------
+# The helper runs as root via pkexec; keeping it under /usr/local, owned by root, means no process
+# running as your user can swap it out between the password prompt and execution.
+if [ "$NO_HELPER" = 0 ] && command -v sudo >/dev/null && { [ -t 0 ] || sudo -n true 2>/dev/null; }; then
+  say "installing the login-screen helper to /usr/local/lib/cinnabar (root-owned)"
+  sudo install -D -o root -g root -m 0755 "$HERE/cinnabar/login_root.py" /usr/local/lib/cinnabar/login_root.py
+  sudo install -D -o root -g root -m 0644 "$HERE/data/io.github.summitt.cinnabar.policy" /usr/share/polkit-1/actions/io.github.summitt.cinnabar.policy
+else
+  say "skipping the root-owned login helper (no sudo); 'cinnabar login' will fall back to the repo copy"
 fi
 
 # ---- 3. CLI, icons, application entries --------------------------------------

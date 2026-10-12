@@ -68,7 +68,11 @@ class WindowEffects {
                 return self._orig.map.call(this, cinnamonwm, actor);
             const saved = this.desktop_effects_map_type;
             this.desktop_effects_map_type = 'traditional';
-            actor.ease = (params) => { delete actor.ease; self._expand(actor, params); };
+            actor.ease = (params) => {
+                delete actor.ease;
+                try { self._expand(actor, params); }
+                catch (e) { global.logError(e); if (params.onStopped) params.onStopped(); }
+            };
             try { return self._orig.map.call(this, cinnamonwm, actor); }
             finally { this.desktop_effects_map_type = saved; delete actor.ease; }
         };
@@ -77,7 +81,11 @@ class WindowEffects {
                 return self._orig.destroy.call(this, cinnamonwm, actor);
             const saved = this.desktop_effects_close_type;
             this.desktop_effects_close_type = 'traditional';
-            actor.ease = (params) => { delete actor.ease; self._contract(actor, params); };
+            actor.ease = (params) => {
+                delete actor.ease;
+                try { self._contract(actor, params); }
+                catch (e) { global.logError(e); if (params.onStopped) params.onStopped(); }
+            };
             try { return self._orig.destroy.call(this, cinnamonwm, actor); }
             finally { this.desktop_effects_close_type = saved; delete actor.ease; }
         };

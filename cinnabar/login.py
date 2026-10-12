@@ -19,6 +19,7 @@ from .builders import theme, wallpaper
 
 STAGE = T.CONFIG_DIR / "login-stage"
 ROOT_HELPER = Path(__file__).resolve().parent / "login_root.py"
+SYSTEM_HELPER = Path("/usr/local/lib/cinnabar/login_root.py")
 LOGIN_THEME = "Cinnabar-Login"
 
 
@@ -96,8 +97,21 @@ def stage(tokens, log=print):
     return STAGE / "manifest.json"
 
 
+def _helper(log):
+    """Use the root-owned copy installed by install.sh when it exists: a helper that lives in
+    the user's home could be swapped by any process running as the user before it runs as root."""
+    try:
+        st = SYSTEM_HELPER.stat()
+        if st.st_uid == 0 and not (st.st_mode & 0o022):
+            return [str(SYSTEM_HELPER)]
+    except OSError:
+        pass
+    log("[login] note: system helper not installed (run ./install.sh); using the copy in the repo")
+    return ["/usr/bin/python3", str(ROOT_HELPER)]
+
+
 def _run_as_root(args, log):
-    cmd = ["/usr/bin/python3", str(ROOT_HELPER)] + args
+    cmd = _helper(log) + args
     if sys.stdin.isatty() and shutil.which("sudo"):
         full = ["sudo"] + cmd
     else:

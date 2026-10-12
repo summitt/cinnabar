@@ -1,6 +1,7 @@
 """Token schema: defaults, preset loading, derived palette."""
 import copy
 import os
+import re
 from pathlib import Path
 
 import yaml
@@ -98,7 +99,7 @@ def load(preset):
         p = presets[preset]
     with open(p) as f:
         data = yaml.safe_load(f) or {}
-    data.setdefault("slug", p.stem)
+    data["slug"] = re.sub(r"[^A-Za-z0-9_-]+", "-", str(data.get("slug") or p.stem)).strip("-") or "preset"
     data.setdefault("name", p.stem.replace("-", " ").title())
     return Tokens(deep_merge(DEFAULTS, data))
 
