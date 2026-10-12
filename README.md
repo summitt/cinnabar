@@ -19,11 +19,13 @@ theme and applied live:
 ## Usage
 
 ```sh
-./install.sh                     # symlinks ~/.local/bin/cinnabar + app menu entry
+./install.sh                     # apt deps, Inter font, Blur Cinnamon, CLI, app entries, tray autostart
+./install.sh --no-apt --no-tray  # skip package installation / the tray icon
 cinnabar list                    # bundled + user presets (* = currently applied)
 cinnabar apply sequoia-dark      # build ~/.themes/Cinnabar and apply everything
 cinnabar apply catppuccin-mocha  # gradient border, mauve accent
 cinnabar gui                     # the app: presets, color pickers, live preview, Apply
+cinnabar tray                    # panel status icon: switch presets from a menu (autostarts after install)
 cinnabar restore                 # put the desktop back exactly as it was before the first apply
 ```
 

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Cinnabar Tray
+Comment=Theme switcher in the panel's status area
+Exec=@HERE@/bin/cinnabar tray
+Icon=cinnabar
+Terminal=false
+Categories=Settings;DesktopSettings;GTK;
+Keywords=theme;tray;cinnabar;
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=3

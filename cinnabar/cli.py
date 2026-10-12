@@ -19,6 +19,7 @@ def main(argv=None):
     p = sub.add_parser("wallpaper", help="only generate the wallpaper"); p.add_argument("preset"); p.add_argument("-o", "--out")
     sub.add_parser("fonts", help="install the Inter font family into ~/.local/share/fonts")
     sub.add_parser("gui", help="open the Cinnabar app")
+    sub.add_parser("tray", help="run the tray icon (preset switcher in the panel)")
     sub.add_parser("current", help="print the currently applied preset")
     args = ap.parse_args(argv)
 
@@ -53,6 +54,9 @@ def main(argv=None):
     elif args.cmd == "gui":
         from . import gui
         sys.exit(gui.main())
+    elif args.cmd == "tray":
+        from . import tray
+        sys.exit(tray.main())
     else:
         ap.print_help()
 
