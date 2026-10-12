@@ -16,7 +16,7 @@ from . import __version__  # noqa: E402
 from . import color as C  # noqa: E402
 from . import tokens as T  # noqa: E402
 
-APP_ID = "io.github.nullop.Cinnabar"
+APP_ID = "io.github.summitt.Cinnabar"
 USER_PRESETS = T.CONFIG_DIR / "presets"
 
 COLOR_ROWS = [
@@ -644,7 +644,7 @@ class CinnabarWindow(Adw.ApplicationWindow):
 
     def _on_about(self, *_):
         Adw.AboutDialog(application_name="Cinnabar", application_icon="cinnabar",
-                        developer_name="nullop", version=__version__,
+                        developer_name="summitt", version=__version__,
                         comments="A token-driven theme engine that makes Cinnamon look like macOS with Hyprland-style window borders.",
                         license_type=Gtk.License.MIT_X11).present(self)
 

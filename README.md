@@ -35,7 +35,7 @@ Everything else is pulled in by the installer: Python GTK bindings (GTK 3, GTK 4
 PyYAML, Jinja2, Pillow, wmctrl, dconf, libnotify, the Inter font and the Blur Cinnamon extension.
 
 ```sh
-git clone https://github.com/nullop/cinnabar.git ~/Code/cinnabar
+git clone https://github.com/summitt/cinnabar.git ~/Code/cinnabar
 cd ~/Code/cinnabar
 ./install.sh            # asks for sudo once, for apt
 cinnabar apply sequoia-dark
