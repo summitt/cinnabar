@@ -418,6 +418,71 @@ class CinnabarWindow(Adw.ApplicationWindow):
         self._switch(g2, "terminals.terminator", "Terminator", "recolor the default profile in ~/.config/terminator/config (font and background kept)")
         self._switch(g2, "flatpak", "Flatpak apps", "give sandboxed GTK apps access to the theme")
         page.add(g2)
+        self._build_login(page)
+
+    def _build_login(self, page):
+        g = Adw.PreferencesGroup(title="Login screen", description="LightDM / slick-greeter — installed system-wide, asks for your password")
+        self._switch(g, "login.enabled", "Theme the login screen on Apply", "GTK theme, background, fonts and icons from this preset")
+        self._combo(g, "login.background", "Background", "", ["Same as desktop wallpaper", "Generate from palette", "Image file", "Solid color"], ["desktop", "generate", "file", "color"])
+        fr = Adw.ActionRow(title="Background file", subtitle="used when Background = Image file")
+        fb = Gtk.Button(label="Choose…", valign=Gtk.Align.CENTER)
+        fb.connect("clicked", self._on_choose_login_bg)
+        fr.add_suffix(fb)
+        self._reg("login.background_file", fr, None, lambda w, v: w.set_subtitle(str(v) if v else "used when Background = Image file"))
+        g.add(fr)
+        self._switch(g, "login.show_clock", "Show clock")
+        self._switch(g, "login.show_hostname", "Show hostname")
+        self._switch(g, "login.draw_grid", "Draw grid pattern")
+        self._switch(g, "login.draw_user_backgrounds", "Use the selected user's wallpaper", "slick-greeter switches to the user's own background")
+        self._switch(g, "login.stretch", "Stretch background across monitors")
+        row = Adw.ActionRow(title="Login screen actions")
+        for label, cb, cls in (("Apply now", self._on_login_apply, "suggested-action"), ("Preview", self._on_login_preview, None), ("Restore", self._on_login_restore, "destructive-action")):
+            b = Gtk.Button(label=label, valign=Gtk.Align.CENTER)
+            if cls:
+                b.add_css_class(cls)
+            b.connect("clicked", cb)
+            row.add_suffix(b)
+        g.add(row)
+        page.add(g)
+
+    def _on_choose_login_bg(self, *_):
+        dlg = Gtk.FileDialog(title="Choose login background")
+        def done(d, res):
+            try:
+                f = d.open_finish(res)
+            except GLib.Error:
+                return
+            self._set("login.background_file", f.get_path())
+            self._set("login.background", "file")
+            self._load_widgets()
+        dlg.open(self, None, done)
+
+    def _login_task(self, fn, busy, done_msg):
+        tokens = T.Tokens(T.deep_merge(T.DEFAULTS, self.tokens.data))
+        self.toast.add_toast(Adw.Toast(title=busy))
+        def work():
+            ok = False
+            try:
+                ok = fn(tokens)
+            except Exception as e:
+                print("login:", e)
+            GLib.idle_add(lambda: (self.toast.add_toast(Adw.Toast(title=done_msg if ok else "Login screen step failed or was cancelled")), False)[1])
+        threading.Thread(target=work, daemon=True).start()
+
+    def _on_login_apply(self, *_):
+        from . import login
+        self._login_task(lambda t: login.apply(t, log=print), "Staging login theme… enter your password when asked", "Login screen themed — use Preview to check it")
+
+    def _on_login_restore(self, *_):
+        from . import login
+        self._login_task(lambda t: login.restore(log=print), "Restoring login screen…", "Original login screen restored")
+
+    def _on_login_preview(self, *_):
+        import shutil as _sh
+        if _sh.which("slick-greeter"):
+            subprocess.Popen(["slick-greeter", "--test-mode"])
+        else:
+            self.toast.add_toast(Adw.Toast(title="slick-greeter not found"))
 
     # ---- state <-> widgets
     def _load_widgets(self):

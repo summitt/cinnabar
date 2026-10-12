@@ -17,6 +17,7 @@ theme and applied live:
 | Terminals | kitty, Alacritty, Ghostty color schemes (included from their configs); Terminator default profile recolored in place |
 | Wallpaper | generated from the palette (soft color fields or gradient) |
 | Fonts | Inter (downloaded on first apply), monospace of your choice |
+| Login screen | LightDM/slick-greeter: the preset's GTK theme, background (desktop wallpaper, generated, file or solid color), fonts, icons and greeter options, installed system-wide via pkexec/sudo with a backup |
 
 ## Usage
 
@@ -28,6 +29,8 @@ cinnabar apply sequoia-dark      # build ~/.themes/Cinnabar and apply everything
 cinnabar apply catppuccin-mocha  # gradient border, mauve accent
 cinnabar gui                     # the app: presets, color pickers, live preview, Apply
 cinnabar tray                    # panel status icon: switch presets from a menu (autostarts after install)
+cinnabar login [preset]          # theme the LightDM login screen (asks for the admin password)
+cinnabar login --restore         # put the original slick-greeter.conf back
 cinnabar restore                 # put the desktop back exactly as it was before the first apply
 ```
 

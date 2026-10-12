@@ -332,6 +332,9 @@ def apply(tokens, log=print, do_wallpaper=True, do_terminals=True, restart=True)
         # GTK caches a theme's CSS per process by name, so Muffin (inside the cinnamon
         # process) keeps the previous build of 'Cinnabar' until Cinnamon restarts.
         restart_cinnamon(log)
+    if tokens.get("login.enabled"):
+        from . import login
+        login.apply(tokens, log=log)
     T.save(tokens, CFG / "current.yaml")
     log(f"[apply] done — preset '{tokens['name']}' is live. Undo anytime with: cinnabar restore")
     return dst

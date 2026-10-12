@@ -20,6 +20,10 @@ def main(argv=None):
     sub.add_parser("fonts", help="install the Inter font family into ~/.local/share/fonts")
     sub.add_parser("gui", help="open the Cinnabar app")
     sub.add_parser("tray", help="run the tray icon (preset switcher in the panel)")
+    p = sub.add_parser("login", help="theme the LightDM login screen with a preset (asks for the admin password)")
+    p.add_argument("preset", nargs="?", help="preset or yaml; default: the current preset")
+    p.add_argument("--restore", action="store_true", help="put the original slick-greeter.conf back")
+    p.add_argument("--stage-only", action="store_true", help="only build the payload under ~/.config/cinnabar/login-stage")
     sub.add_parser("current", help="print the currently applied preset")
     args = ap.parse_args(argv)
 
@@ -57,6 +61,16 @@ def main(argv=None):
     elif args.cmd == "tray":
         from . import tray
         sys.exit(tray.main())
+    elif args.cmd == "login":
+        from . import login
+        if args.restore:
+            sys.exit(0 if login.restore() else 1)
+        cur = T.CONFIG_DIR / "current.yaml"
+        t = T.load(args.preset or (cur if cur.exists() else "sequoia-dark"))
+        if args.stage_only:
+            print(login.stage(t))
+        else:
+            sys.exit(0 if login.apply(t) else 1)
     else:
         ap.print_help()
 

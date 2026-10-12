@@ -56,6 +56,15 @@ DEFAULTS = {
     "wallpaper": {"mode": "generate", "file": None, "style": "blobs"},
     "terminals": {"kitty": True, "alacritty": True, "ghostty": True, "terminator": True},
     "flatpak": True,
+    "login": {                        # LightDM / slick-greeter (needs the admin password; off by default)
+        "enabled": False,
+        "background": "desktop",      # desktop | generate | file | color
+        "background_file": None,
+        "icons": None,                # None -> same as desktop (must be installed system-wide)
+        "font": None,                 # None -> fonts.ui (must be installed system-wide)
+        "draw_grid": False, "show_hostname": False, "show_clock": True, "clock_format": "%H:%M",
+        "draw_user_backgrounds": False, "stretch": False, "logo": None,
+    },
 }
 
 
