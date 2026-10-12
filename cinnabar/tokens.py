@@ -24,7 +24,6 @@ DEFAULTS = {
     },
     "window": {
         "radius": 12,                 # corner radius of windows (px)
-        "round_bottom": True,         # also round the bottom corners (X11 clips the client)
         "border": 2,                  # Hyprland-style border width (px)
         "border_focused": "accent",   # hex, 'accent', or 'gradient'
         "border_gradient_to": "purple",  # second gradient stop: hex or a color token name
@@ -33,6 +32,7 @@ DEFAULTS = {
         "buttons": "left",            # left (macOS) | right
         "button_size": 12,            # traffic light diameter
         "title_align": "center",
+        "corners_extension": True,    # GLSL effect: rounds all four corners of every window + border
     },
     "controls": {"radius": 6, "radius_large": 10, "popup_radius": 12},
     "panel": {

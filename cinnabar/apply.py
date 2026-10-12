@@ -204,6 +204,55 @@ def _set_blur(tokens, log):
     log(f"[blur] configured Blur Cinnamon ({n} keys): translucent top panel, menus, notifications")
 
 
+# ---------------------------------------------------------------- corners extension
+CORNERS_UUID = "CinnabarCorners@cinnabar"
+CORNERS_SRC = T.PROJECT_DIR / "extension" / CORNERS_UUID
+CORNERS_DST = Path.home() / ".local/share/cinnamon/extensions" / CORNERS_UUID
+CORNERS_JSON = Path.home() / ".config/cinnamon/spices" / CORNERS_UUID / f"{CORNERS_UUID}.json"
+
+
+def _set_corners(tokens, log):
+    """Install/refresh the Cinnabar Corners extension and push the preset's values into it."""
+    c = tokens.palette
+    enabled = json.loads(gget("org.cinnamon", "enabled-extensions").replace("'", '"'))
+    want = bool(tokens.get("window.corners_extension", True))
+    if not want:
+        if CORNERS_UUID in enabled:
+            enabled.remove(CORNERS_UUID)
+            gset("org.cinnamon", "enabled-extensions", json.dumps(enabled).replace('"', "'"))
+        log("[corners] extension disabled")
+        return
+    CORNERS_DST.mkdir(parents=True, exist_ok=True)
+    for f in CORNERS_SRC.iterdir():
+        shutil.copy(f, CORNERS_DST / f.name)
+    schema = json.loads((CORNERS_SRC / "settings-schema.json").read_text())
+    values = {
+        "radius": int(tokens.get("window.radius")), "border": int(tokens.get("window.border")),
+        "color-focused": _rgb_str(c["wm_border_focused"]),
+        "gradient": tokens.get("window.border_focused") == "gradient",
+        "color-focused-to": _rgb_str(c["wm_border_gradient_to"]),
+        "color-unfocused": _rgb_str(c["wm_border_unfocused"]), "skip-csd": True,
+    }
+    data = json.loads(CORNERS_JSON.read_text()) if CORNERS_JSON.exists() else {}
+    import hashlib
+    out = {}
+    for k, v in schema.items():
+        entry = dict(data.get(k, {})) if isinstance(data.get(k), dict) else {}
+        entry.update(v)
+        if k in values:
+            entry["value"] = values[k]
+        elif "value" not in entry and "default" in v:
+            entry["value"] = v["default"]
+        out[k] = entry
+    out["__md5__"] = hashlib.md5((CORNERS_SRC / "settings-schema.json").read_bytes()).hexdigest()
+    CORNERS_JSON.parent.mkdir(parents=True, exist_ok=True)
+    CORNERS_JSON.write_text(json.dumps(out, indent=4))
+    if CORNERS_UUID not in enabled:
+        enabled.append(CORNERS_UUID)
+        gset("org.cinnamon", "enabled-extensions", json.dumps(enabled).replace('"', "'"))
+    log(f"[corners] rounded corners + border on every window (radius {values['radius']}px, border {values['border']}px)")
+
+
 # ---------------------------------------------------------------- flatpak
 def _flatpak(tokens, log):
     if not tokens.get("flatpak") or not shutil.which("flatpak"):
@@ -258,6 +307,7 @@ def apply(tokens, log=print, do_wallpaper=True, do_terminals=True, restart=True)
 
     _set_panels(tokens, log)
     _set_blur(tokens, log)
+    _set_corners(tokens, log)
     _flatpak(tokens, log)
 
     if do_wallpaper and tokens.get("wallpaper.mode") != "keep":

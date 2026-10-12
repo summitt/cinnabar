@@ -8,7 +8,8 @@ theme and applied live:
 | Target | What is generated |
 |---|---|
 | GTK 2 / 3 / 4 + libadwaita | full theme derived from Mint-Y by palette remapping, plus overrides (radius, headerbars, traffic lights) |
-| Window frames (Muffin) | rounded corners, accent/gradient border, macOS traffic lights on the left, centered title |
+| Window frames (Muffin) | rounded corners, accent/gradient border ring, macOS traffic lights on the left, centered title |
+| Cinnabar Corners extension | GLSL compositor effect that rounds **all four** corners of every window and draws the border, including terminals, Electron and other apps Muffin cannot clip |
 | Cinnamon shell | translucent top panel, floating dock pill for the window list, rounded menus/notifications/OSD/alt-tab |
 | Blur Cinnamon extension | configured for panels, menus, notifications, tooltips, OSD, alt-tab |
 | Terminals | kitty, Alacritty, Ghostty color schemes (included from their configs) |
@@ -55,8 +56,11 @@ fonts:  { ui: "Inter 10", title: "Inter Semi-Bold 10", mono: "JetBrainsMono Nerd
 
 ## Known limits
 
-* Bottom window corners: on X11 the frame mask also clips the client window, so the accent
-  border is interrupted at the two bottom corners. Set `window.round_bottom: false` for a
-  continuous border with square bottom corners.
+* Muffin on X11 only rounds the top corners of server-side-decorated windows and draws its
+  frame from the GTK `decoration` *background* (the compositor mask ignores CSS borders).
+  The bundled `extension/CinnabarCorners@cinnabar` fixes the bottom corners with a fragment
+  shader on each window's surface actor; `window.corners_extension: false` turns it off.
+* Maximized, tiled and fullscreen windows are left square (as in Hyprland). GTK client-side
+  decorated windows are skipped by the extension because the GTK theme already rounds them.
 * Apps that were already running keep their previous GTK CSS until restarted (GTK caches it).
 * Gradient borders are drawn with `border-image`, which ignores `border-radius` on the inner edge.

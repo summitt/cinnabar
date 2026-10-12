@@ -1,0 +1,10 @@
+{
+    "head": {"type": "header", "description": "Cinnabar Corners"},
+    "radius": {"type": "spinbutton", "default": 12, "min": 0, "max": 48, "step": 1, "units": "px", "description": "Corner radius"},
+    "border": {"type": "spinbutton", "default": 2, "min": 0, "max": 10, "step": 1, "units": "px", "description": "Border width"},
+    "color-focused": {"type": "colorchooser", "default": "rgb(10,132,255)", "description": "Border color (focused window)"},
+    "gradient": {"type": "checkbox", "default": false, "description": "Gradient border (focused window)"},
+    "color-focused-to": {"type": "colorchooser", "default": "rgb(191,90,242)", "description": "Gradient end color"},
+    "color-unfocused": {"type": "colorchooser", "default": "rgb(58,58,68)", "description": "Border color (unfocused window)"},
+    "skip-csd": {"type": "checkbox", "default": true, "description": "Leave client-side decorated windows alone (GTK apps already round and border themselves)"}
+}

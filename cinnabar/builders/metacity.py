@@ -116,7 +116,7 @@ def render(tokens):
     c = tokens.palette
     B = int(tokens.get("window.border", 2))
     R = int(tokens.get("window.radius", 12))
-    RB = R if tokens.get("window.round_bottom", True) else "false"
+    RB = R
     H = int(tokens.get("window.titlebar_height", 36))
     size = int(tokens.get("window.button_size", 12))
     BW = size + 8

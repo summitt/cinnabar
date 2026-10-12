@@ -43,32 +43,42 @@ headerbar .subtitle { color: {{ c.fg_dim }}; }
 
 /* ---- server-side decorations: Muffin (Cinnamon >= 5.4) renders window frames with this CSS ---- */
 .ssd decoration, window.ssd decoration {
-  border-radius: {{ w.radius }}px{% if not w.round_bottom %} {{ w.radius }}px 0 0{% endif %};
-  border: {{ w.border }}px solid {{ c.wm_border_focused }};
+  /* Muffin: frame border = border + padding of this node; the compositor mask is
+     built from its *background* only, and GTK skips the background under an opaque
+     border, so the ring is expressed as padding with a background. */
+  border: none;
+  padding: {{ w.border }}px;
+  border-radius: {{ w.radius }}px;
+  background-color: {{ c.wm_border_focused }};
 {% if t.window.border_focused == "gradient" %}
-  border-image: linear-gradient(135deg, {{ c.wm_border_focused }}, {{ c.wm_border_gradient_to }}) 1;
+  background-image: linear-gradient(135deg, {{ c.wm_border_focused }}, {{ c.wm_border_gradient_to }});
+{% else %}
+  background-image: none;
 {% endif %}
   box-shadow: none;
   margin: 10px;
 }
 .ssd decoration:backdrop, window.ssd decoration:backdrop {
-  border-color: {{ c.wm_border_unfocused }};
-  border-image: none;
+  background-color: {{ c.wm_border_unfocused }};
+  background-image: none;
   box-shadow: none;
 }
 .ssd.maximized decoration, .ssd.fullscreen decoration, .ssd.maximized decoration:backdrop, .ssd.fullscreen decoration:backdrop {
   border-radius: 0;
-  border-width: 0;
-  border-image: none;
+  padding: 0;
+  background-image: none;
 }
 .ssd.tiled decoration, .ssd.tiled decoration:backdrop { border-radius: 0; }
 
 headerbar.default-decoration, .titlebar.default-decoration, .default-decoration.titlebar:not(headerbar) {
-  min-height: {{ w.titlebar_height - 6 }}px;
+  min-height: {{ w.titlebar_height - 6 - w.border }}px;
   padding: 3px 8px;
   background: {{ c.wm_bg }};
+  background-clip: padding-box;
   color: {{ c.wm_title }};
-  border: none;
+  /* transparent top/side border lets the decoration ring show through */
+  border: {{ w.border }}px solid transparent;
+  border-bottom: none;
   border-radius: {{ w.radius - w.border }}px {{ w.radius - w.border }}px 0 0;
   box-shadow: none;
 }
@@ -79,6 +89,8 @@ headerbar.default-decoration:backdrop, .titlebar.default-decoration:backdrop, .d
 .maximized headerbar.default-decoration, .maximized .default-decoration.titlebar:not(headerbar),
 .tiled headerbar.default-decoration, .tiled .default-decoration.titlebar:not(headerbar) {
   border-radius: 0;
+  border-width: 0;
+  min-height: {{ w.titlebar_height - 6 }}px;
   background: {{ c.wm_bg }};
 }
 .maximized headerbar.default-decoration:backdrop, .maximized .default-decoration.titlebar:not(headerbar):backdrop { background: {{ c.wm_bg_unfocused }}; }

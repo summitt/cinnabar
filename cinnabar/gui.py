@@ -348,7 +348,7 @@ class CinnabarWindow(Adw.ApplicationWindow):
     def _build_window(self, page):
         g = Adw.PreferencesGroup(title="Windows", description="Muffin frames and GTK client-side decorations")
         self._spin(g, "window.radius", "Corner radius", "px", 0, 24)
-        self._switch(g, "window.round_bottom", "Round bottom corners", "X11 clips the client area at the bottom corners")
+        self._switch(g, "window.corners_extension", "Round every window with the compositor", "Cinnabar Corners extension: all four corners + border on terminals, Electron apps, etc.")
         self._spin(g, "window.border", "Border width", "Hyprland-style frame border, px", 0, 6)
         self._combo(g, "window.border_focused", "Focused border", "", ["Accent color", "Gradient (accent → purple)"], ["accent", "gradient"])
         self._spin(g, "window.titlebar_height", "Titlebar height", "px", 24, 56)
