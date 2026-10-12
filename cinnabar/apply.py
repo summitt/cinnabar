@@ -232,6 +232,12 @@ def _set_corners(tokens, log):
         "gradient": tokens.get("window.border_focused") == "gradient",
         "color-focused-to": _rgb_str(c["wm_border_gradient_to"]),
         "color-unfocused": _rgb_str(c["wm_border_unfocused"]), "skip-csd": True,
+        "animate": bool(tokens.get("window.border_animate", True)),
+        "speed": int(tokens.get("window.border_speed", 8)), "fps": int(tokens.get("window.border_fps", 30)),
+        "window-effects": bool(tokens.get("window.effects", True)),
+        "effect-duration": int(tokens.get("window.effect_duration", 220)),
+        "pop-scale": int(tokens.get("window.effect_scale", 80)),
+        "overshoot": bool(tokens.get("window.effect_overshoot", True)),
     }
     data = json.loads(CORNERS_JSON.read_text()) if CORNERS_JSON.exists() else {}
     import hashlib
@@ -250,7 +256,8 @@ def _set_corners(tokens, log):
     if CORNERS_UUID not in enabled:
         enabled.append(CORNERS_UUID)
         gset("org.cinnamon", "enabled-extensions", json.dumps(enabled).replace('"', "'"))
-    log(f"[corners] rounded corners + border on every window (radius {values['radius']}px, border {values['border']}px)")
+    anim = f", animated gradient every {values['speed']}s" if values["animate"] and values["gradient"] else ""
+    log(f"[corners] rounded corners + border on every window (radius {values['radius']}px, border {values['border']}px{anim})")
 
 
 # ---------------------------------------------------------------- flatpak

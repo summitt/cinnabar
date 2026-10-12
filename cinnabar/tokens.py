@@ -33,6 +33,13 @@ DEFAULTS = {
         "button_size": 12,            # traffic light diameter
         "title_align": "center",
         "corners_extension": True,    # GLSL effect: rounds all four corners of every window + border
+        "border_animate": True,       # rotate a two-tone (gradient) border around the focused window
+        "border_speed": 8,            # seconds per full rotation
+        "border_fps": 30,
+        "effects": True,              # expand on open / contract on close (pop-in)
+        "effect_duration": 220,       # ms
+        "effect_scale": 80,           # % size the window starts/ends at
+        "effect_overshoot": True,     # springy overshoot
     },
     "controls": {"radius": 6, "radius_large": 10, "popup_radius": 12},
     "panel": {
@@ -47,7 +54,7 @@ DEFAULTS = {
     "icons": "Papirus-Dark",
     "cursor": {"theme": "Bibata-Modern-Classic", "size": 24},
     "wallpaper": {"mode": "generate", "file": None, "style": "blobs"},
-    "terminals": {"kitty": True, "alacritty": True, "ghostty": True},
+    "terminals": {"kitty": True, "alacritty": True, "ghostty": True, "terminator": True},
     "flatpak": True,
 }
 

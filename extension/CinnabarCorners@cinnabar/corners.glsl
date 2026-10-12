@@ -9,6 +9,8 @@ uniform float w;
 uniform float h;
 uniform float radius;
 uniform float border;
+uniform float bottom;
+uniform float angle;
 uniform float c1r;
 uniform float c1g;
 uniform float c1b;
@@ -47,8 +49,11 @@ void main(void) {
         return;
     }
     float outer = rrect_coverage(p, bounds, radius);
-    float inner = rrect_coverage(p, vec4(bounds.x + border, bounds.y + border, bounds.z - border, bounds.w - border), max(radius - border, 0.0));
-    float t = clamp(((p.x - x0) / w + (p.y - y0) / h) * 0.5, 0.0, 1.0);
+    float inner = rrect_coverage(p, vec4(bounds.x + border, bounds.y + border, bounds.z - border, bounds.w - bottom), max(radius - border, 0.0));
+    // two-tone gradient along a direction that can rotate (Hyprland-style animated border)
+    vec2 dir = vec2(cos(angle), sin(angle));
+    vec2 q = vec2((p.x - x0) / w - 0.5, (p.y - y0) / h - 0.5);
+    float t = clamp(dot(q, dir) * 0.9 + 0.5, 0.0, 1.0);
     vec3 bc = mix(vec3(c1r, c1g, c1b), vec3(c2r, c2g, c2b), t);
     vec4 ring = vec4(bc, 1.0);
     // Window texels are premultiplied.  Along the ring's inner edge the frame's own

@@ -351,11 +351,20 @@ class CinnabarWindow(Adw.ApplicationWindow):
         self._switch(g, "window.corners_extension", "Round every window with the compositor", "Cinnabar Corners extension: all four corners + border on terminals, Electron apps, etc.")
         self._spin(g, "window.border", "Border width", "Hyprland-style frame border, px", 0, 6)
         self._combo(g, "window.border_focused", "Focused border", "", ["Accent color", "Gradient (accent → purple)"], ["accent", "gradient"])
+        self._switch(g, "window.border_animate", "Animate gradient border", "rotate the two-tone accent around the focused window (Hyprland style)")
+        self._spin(g, "window.border_speed", "Rotation time", "seconds per full turn", 1, 60)
+        self._spin(g, "window.border_fps", "Animation frame rate", "lower = less GPU/CPU", 5, 60, 5)
         self._spin(g, "window.titlebar_height", "Titlebar height", "px", 24, 56)
         self._spin(g, "window.button_size", "Traffic light size", "px", 8, 18)
         self._combo(g, "window.buttons", "Window buttons", "", ["Left (macOS)", "Right"], ["left", "right"])
         self._spin(g, "controls.radius", "Control radius", "buttons, entries, menu items", 0, 14)
         self._spin(g, "controls.popup_radius", "Popup radius", "menus, notifications, dialogs", 0, 24)
+        page.add(g)
+        g = Adw.PreferencesGroup(title="Window animations", description="Expand on open, contract on close")
+        self._switch(g, "window.effects", "Expand / contract", "pop-in on open, shrink and fade on close; off = Cinnamon's own effects")
+        self._spin(g, "window.effect_duration", "Duration", "ms", 60, 800, 10)
+        self._spin(g, "window.effect_scale", "Start / end size", "% of the window's size", 40, 100, 5)
+        self._switch(g, "window.effect_overshoot", "Overshoot", "springy pop past the final size")
         page.add(g)
 
     def _build_panel(self, page):
@@ -406,6 +415,7 @@ class CinnabarWindow(Adw.ApplicationWindow):
         self._switch(g2, "terminals.kitty", "kitty", "write ~/.config/kitty/cinnabar-theme.conf and include it")
         self._switch(g2, "terminals.alacritty", "Alacritty", "write and import ~/.config/alacritty/cinnabar-theme.toml")
         self._switch(g2, "terminals.ghostty", "Ghostty", "write ~/.config/ghostty/themes/cinnabar")
+        self._switch(g2, "terminals.terminator", "Terminator", "recolor the default profile in ~/.config/terminator/config (font and background kept)")
         self._switch(g2, "flatpak", "Flatpak apps", "give sandboxed GTK apps access to the theme")
         page.add(g2)
 

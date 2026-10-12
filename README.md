@@ -11,10 +11,10 @@ theme and applied live:
 |---|---|
 | GTK 2 / 3 / 4 + libadwaita | full theme derived from Mint-Y by palette remapping, plus overrides (radius, headerbars, traffic lights) |
 | Window frames (Muffin) | rounded corners, accent/gradient border ring, macOS traffic lights on the left, centered title |
-| Cinnabar Corners extension | GLSL compositor effect that rounds **all four** corners of every window and draws the border, including terminals, Electron and other apps Muffin cannot clip |
+| Cinnabar Corners extension | GLSL compositor effect that rounds **all four** corners of every window and draws the border (optionally a rotating two-tone gradient, Hyprland style), plus expand/contract open and close animations |
 | Cinnamon shell | translucent top panel, floating dock pill for the window list, rounded menus/notifications/OSD/alt-tab |
 | Blur Cinnamon extension | configured for panels, menus, notifications, tooltips, OSD, alt-tab |
-| Terminals | kitty, Alacritty, Ghostty color schemes (included from their configs) |
+| Terminals | kitty, Alacritty, Ghostty color schemes (included from their configs); Terminator default profile recolored in place |
 | Wallpaper | generated from the palette (soft color fields or gradient) |
 | Fonts | Inter (downloaded on first apply), monospace of your choice |
 
