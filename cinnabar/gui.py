@@ -568,7 +568,7 @@ class CinnabarWindow(Adw.ApplicationWindow):
         dlg.present(self)
 
     def _on_about(self, *_):
-        Adw.AboutDialog(application_name="Cinnabar", application_icon="preferences-desktop-theme",
+        Adw.AboutDialog(application_name="Cinnabar", application_icon="cinnabar",
                         developer_name="nullop", version=__version__,
                         comments="A token-driven theme engine that makes Cinnamon look like macOS with Hyprland-style window borders.",
                         license_type=Gtk.License.MIT_X11).present(self)

@@ -1,3 +1,5 @@
+<p align="center"><img src="data/logo.svg" alt="Cinnabar" width="640"></p>
+
 # Cinnabar
 
 A token-driven theme engine for **Linux Mint Cinnamon** that makes the desktop look as

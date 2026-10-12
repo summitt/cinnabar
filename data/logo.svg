@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="280" viewBox="0 0 1040 280">
+  <defs>
+    <linearGradient id="table" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a74"/><stop offset="1" stop-color="#ff4a4a"/></linearGradient>
+    <linearGradient id="spec" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff7a62"/><stop offset="1" stop-color="#c2203f"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ff4d3d" stop-opacity="0.45"/><stop offset="1" stop-color="#ff2d55" stop-opacity="0"/></radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  </defs>
+  <ellipse cx="150" cy="150" rx="130" ry="120" fill="url(#glow)" filter="url(#blur)"/>
+  <g transform="translate(150 140) rotate(-18) scale(0.62)">
+    <path d="M0 -168 L104 -82 L52 -41 L0 -84 Z" fill="#ff7a62"/>
+    <path d="M104 -82 L104 84 L52 42 L52 -41 Z" fill="#e8323f"/>
+    <path d="M104 84 L0 170 L0 84 L52 42 Z" fill="#a61a44"/>
+    <path d="M0 170 L-104 84 L-52 42 L0 84 Z" fill="#c2203f"/>
+    <path d="M-104 84 L-104 -82 L-52 -41 L-52 42 Z" fill="#ee4a46"/>
+    <path d="M-104 -82 L0 -168 L0 -84 L-52 -41 Z" fill="#ffa08c"/>
+    <path d="M0 -84 L52 -41 L52 42 L0 84 L-52 42 L-52 -41 Z" fill="url(#table)"/>
+    <path d="M0 -168 L104 -82 L104 84 L0 170 L-104 84 L-104 -82 Z M0 -84 L52 -41 L52 42 L0 84 L-52 42 L-52 -41 Z M0 -168 L0 -84 M104 -82 L52 -41 M104 84 L52 42 M0 170 L0 84 M-104 84 L-52 42 M-104 -82 L-52 -41" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M-104 -82 L0 -168 L104 -82 L52 -41 L-52 -41 Z" fill="url(#spec)"/>
+    <circle cx="-24" cy="-10" r="8" fill="#fff" fill-opacity="0.95"/><circle cx="0" cy="-10" r="8" fill="#fff" fill-opacity="0.75"/><circle cx="24" cy="-10" r="8" fill="#fff" fill-opacity="0.55"/>
+  </g>
+  <text x="300" y="168" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif" font-size="128" font-weight="700" letter-spacing="-5" fill="#e8e8ee">cinna<tspan fill="url(#word)">bar</tspan></text>
+  <text x="304" y="222" font-family="Inter, 'SF Pro Text', system-ui, sans-serif" font-size="30" font-weight="500" letter-spacing="6" fill="#8e8e96">THEME ENGINE FOR CINNAMON</text>
+</svg>
