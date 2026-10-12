@@ -2,26 +2,39 @@
 /* ======================================================================
    Cinnabar overrides — {{ t.name }}  (GTK 4 / libadwaita)
    ====================================================================== */
-window.csd, window.csd.ssd { border-radius: {{ w.radius }}px; }
-window.csd.maximized, window.csd.fullscreen, window.csd.tiled, window.csd.tiled-top, window.csd.tiled-right, window.csd.tiled-bottom, window.csd.tiled-left { border-radius: 0; }
-window.csd decoration, decoration {
+/* GTK4 has no 'decoration' node: the CSD shadow, outline and corner radius live on window.csd */
+window.csd, window.csd.ssd {
   border-radius: {{ w.radius }}px;
+  outline: none;
   box-shadow: 0 8px 24px 2px {{ "#000000" | alpha(0.45) }}, 0 0 0 {{ w.border }}px {{ c.wm_border_focused }};
-  margin: 12px;
+  margin: 0;
 }
-window.csd decoration:backdrop, decoration:backdrop {
+window.csd:backdrop, window.csd.ssd:backdrop {
+  outline: none;
   box-shadow: 0 4px 14px 1px {{ "#000000" | alpha(0.28) }}, 0 0 0 {{ w.border }}px {{ c.wm_border_unfocused }};
 }
-window.csd.maximized decoration, window.csd.fullscreen decoration, .maximized decoration, .fullscreen decoration { border-radius: 0; box-shadow: none; }
-window.csd.tiled decoration, .tiled decoration, .tiled-top decoration, .tiled-right decoration, .tiled-bottom decoration, .tiled-left decoration {
+window.csd.maximized, window.csd.fullscreen, window.csd.maximized:backdrop, window.csd.fullscreen:backdrop {
   border-radius: 0;
+  outline: none;
+  box-shadow: none;
+}
+window.csd.tiled, window.csd.tiled-top, window.csd.tiled-right, window.csd.tiled-bottom, window.csd.tiled-left {
+  border-radius: 0;
+  outline: none;
   box-shadow: 0 0 0 {{ w.border }}px {{ c.wm_border_focused }};
 }
-window.popup decoration, popover > contents, popover > arrow, .popup decoration, tooltip decoration, window.csd.popup decoration {
+window.csd.tiled:backdrop, window.csd.tiled-top:backdrop, window.csd.tiled-right:backdrop, window.csd.tiled-bottom:backdrop, window.csd.tiled-left:backdrop {
+  box-shadow: 0 0 0 {{ w.border }}px {{ c.wm_border_unfocused }};
+}
+window.csd.popup, window.popup, window.csd.messagedialog, window.csd.dialog.message, window.csd.popup:backdrop {
+  border-radius: {{ r.popup }}px;
+  box-shadow: 0 6px 18px {{ "#000000" | alpha(0.4) }}, 0 0 0 1px {{ c.fg | alpha(0.12) }};
+}
+popover > contents, popover > arrow {
   box-shadow: 0 6px 18px {{ "#000000" | alpha(0.4) }}, 0 0 0 1px {{ c.fg | alpha(0.12) }};
   border-radius: {{ r.popup }}px;
 }
-window.ssd decoration, window.solid-csd decoration { border-radius: 0; box-shadow: none; }
+window.ssd:not(.csd), window.solid-csd { border-radius: 0; box-shadow: none; }
 
 headerbar, .top-bar headerbar, .titlebar {
   min-height: {{ w.titlebar_height }}px;

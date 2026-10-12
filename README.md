@@ -60,6 +60,9 @@ fonts:  { ui: "Inter 10", title: "Inter Semi-Bold 10", mono: "JetBrainsMono Nerd
   frame from the GTK `decoration` *background* (the compositor mask ignores CSS borders).
   The bundled `extension/CinnabarCorners@cinnabar` fixes the bottom corners with a fragment
   shader on each window's surface actor; `window.corners_extension: false` turns it off.
+* GTK4/libadwaita windows (Ghostty, GNOME apps) have no `decoration` node; their ring and
+  radius are set on `window.csd` / `window.csd:backdrop` in the libadwaita-1.x stylesheet.
+  Already-running GTK apps keep their old CSS until relaunched.
 * Maximized, tiled and fullscreen windows are left square (as in Hyprland). GTK client-side
   decorated windows are skipped by the extension because the GTK theme already rounds them.
 * Apps that were already running keep their previous GTK CSS until restarted (GTK caches it).

@@ -85,17 +85,22 @@ class CinnabarCorners {
         const t = this._tracked.get(w);
         if (!t) return;
         for (const id of t.ids) { try { w.disconnect(id); } catch (e) { } }
-        if (removeEffect) {
-            const surf = this._surface(w);
-            if (surf) surf.remove_effect_by_name(EFFECT_NAME);
+        if (removeEffect && t.surf) {
+            try { t.surf.remove_effect_by_name(EFFECT_NAME); } catch (e) { }
         }
         this._tracked.delete(w);
     }
 
     _surface(w) {
+        // Only ever attach to the MetaSurfaceActor child: its texture is exactly the
+        // window buffer.  Right after 'window-created' it may not exist yet, so callers
+        // retry; never fall back to the MetaWindowActor (shadow + different geometry).
         const actor = w.get_compositor_private();
         if (!actor) return null;
-        return actor.get_first_child() || actor;
+        for (const c of actor.get_children()) {
+            if (GObject.type_name(c).indexOf('SurfaceActor') >= 0) return c;
+        }
+        return null;
     }
 
     _applicable(w) {
@@ -112,9 +117,13 @@ class CinnabarCorners {
         if (!t) return;
         const surf = this._surface(w);
         if (!surf) {
-            if (t.retries++ < 20) Mainloop.timeout_add(100, () => { this._update(w); return false; });
+            if (t.retries++ < 30) Mainloop.timeout_add(100, () => { this._update(w); return false; });
             return;
         }
+        if (t.surf && t.surf !== surf) {
+            try { t.surf.remove_effect_by_name(EFFECT_NAME); } catch (e) { }
+        }
+        t.surf = surf;
         if (!this._applicable(w)) {
             surf.remove_effect_by_name(EFFECT_NAME);
             return;

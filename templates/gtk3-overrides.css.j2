@@ -47,7 +47,9 @@ headerbar .subtitle { color: {{ c.fg_dim }}; }
      built from its *background* only, and GTK skips the background under an opaque
      border, so the ring is expressed as padding with a background. */
   border: none;
-  padding: {{ w.border }}px;
+  /* Muffin rounds the frame's bottom corners (and its shadow) only when
+     bottom + side edge >= 5px, so the bottom edge is at least 3px. */
+  padding: {{ w.border }}px {{ w.border }}px {{ [w.border, 3] | max if w.border > 0 else 0 }}px {{ w.border }}px;
   border-radius: {{ w.radius }}px;
   background-color: {{ c.wm_border_focused }};
 {% if t.window.border_focused == "gradient" %}
